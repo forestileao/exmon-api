@@ -1,4 +1,5 @@
 defmodule ExMonWeb.Router do
+  alias ExMonWeb.TrainersController
   use ExMonWeb, :router
 
   pipeline :api do
@@ -9,6 +10,9 @@ defmodule ExMonWeb.Router do
     pipe_through :api
 
     resources "/trainers", TrainersController, only: [:create, :show, :delete, :update]
+
+    post "/trainers/signin", TrainersController, :sign_in
+
     get "/pokemons/:name", PokemonsController, :show
   end
 
