@@ -2,38 +2,27 @@ defmodule ExMonWeb.TrainersView do
   use ExMonWeb, :view
   alias ExMon.Trainer
 
-  def render("create.json", %{trainer: %Trainer{id: id, name: name, inserted_at: inserted_at},
-      token: token}) do
+  def render("create.json", %{
+        trainer: trainer,
+        token: token
+      }) do
     %{
       message: "Trainer created",
-      trainer: %{
-        id: id,
-        name: name,
-        inserted_at: inserted_at
-      },
+      trainer: trainer |> Map.take([:id, :name, :inserted_at]),
       token: token
     }
   end
 
-  def render("update.json", %{
-        trainer: %Trainer{id: id, name: name, inserted_at: inserted_at, updated_at: updated_at}
-      }) do
+  def render("sign_in.json", result), do: result |> Map.take([:token])
+
+  def render("update.json", %{trainer: trainer}) do
     %{
       message: "Trainer updated!",
-      trainer: %{
-        id: id,
-        name: name,
-        inserted_at: inserted_at,
-        updated_at: updated_at
-      }
+      trainer: trainer |> Map.take([:id, :name, :inserted_at, :updated_at])
     }
   end
 
-  def render("show.json", %{trainer: %Trainer{id: id, name: name, inserted_at: inserted_at}}) do
-    %{
-      id: id,
-      name: name,
-      inserted_at: inserted_at
-    }
+  def render("show.json", %{trainer: trainer}) do
+    trainer |> Map.take([:id, :name, :inserted_at])
   end
 end
