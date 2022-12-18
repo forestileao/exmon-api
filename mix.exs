@@ -5,7 +5,7 @@ defmodule ExMon.MixProject do
     [
       app: :ex_mon,
       version: "0.1.0",
-      elixir: "~> 1.12",
+      elixir: "~> 1.14.2",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -46,7 +46,8 @@ defmodule ExMon.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:argon2_elixir, "~> 3.0"},
-      {:tesla, "~> 1.4"}
+      {:tesla, "~> 1.4"},
+      {:guardian, "~> 2.0"}
     ]
   end
 
